@@ -1,0 +1,22 @@
+.robotcard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 0em;
+    font-size: 0.75em;
+    background-color: lightgray;
+    width: 15em;
+    height: 20em;
+    border-radius: 1.5em;
+    margin: 1em;
+    box-shadow: 0em 1em 1em 0.1em grey;
+}
+
+h1 {
+    margin: 0;
+}
+
+.robotlogo {
+    max-height: 10em;
+}

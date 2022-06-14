@@ -1,0 +1,19 @@
+.StatusBar {
+    font-size: 0.65em;
+    margin: 1em 3em;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.labels {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.label {
+    margin-right: 5px;
+}
