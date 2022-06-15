@@ -9,48 +9,65 @@ export default function RobotCard(props) {
         "previous": false
     })
     const [robotState, setRobotState] = useState({
-        "Connection": false,
+        "Connection": true,
         "Activated": false,
-        "Homed": false
+        "Homed": false,
+        "Error": false,
     })
     const isMounted = useRef(false)
 
-    function onClickHandle() {
-        console.log('Clicked')
-        console.log(buttonState)
-        if (buttonState["actual"]) {
-            setButtonState({
-                ...buttonState,
-                "actual": false
-            })
-        } else {
-            console.log('Butts')
-            setButtonState({
-                ...buttonState,
-                "actual": true
-            })
-        }
-    }
+    // function onClickHandle() {
+    //     console.log('Clicked')
+    //     console.log(buttonState)
+    //     if (buttonState["actual"]) {
+    //         setButtonState({
+    //             ...buttonState,
+    //             "actual": false
+    //         })
+    //     } else {
+    //         console.log('Butts')
+    //         setButtonState({
+    //             ...buttonState,
+    //             "actual": true
+    //         })
+    //     }
+    // }
 
+
+
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         setButtonState(prevButtonState => {
+    //             if (prevButtonState["actual"] !== prevButtonState["prev"]) {
+    //                 return {
+    //                     ...prevButtonState,
+    //                     "previous": prevButtonState["actual"]
+    //                 }
+    //             } else {
+    //                 return {
+    //                     ...prevButtonState,
+    //                     "previous": prevButtonState["actual"]
+    //                 }
+    //             }
+    //         })
+    //     }, 1000)
+
+    // }, [])
 
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setButtonState(prevButtonState => {
-                if (prevButtonState["actual"] !== prevButtonState["prev"]) {
-                    return {
-                        ...prevButtonState,
-                        "previous": prevButtonState["actual"]
-                    }
-                } else {
-                    return {
-                        ...prevButtonState,
-                        "previous": prevButtonState["actual"]
-                    }
+        const interval = setInterval(async () => {
+            const response = await fetch(`/getStatus?ip=${props.ipaddress}`)
+            const status = await response.json()
+            setRobotState(prevRobotState => {
+                return {
+                    'Connection': true,
+                    'Activated': status.Activated,
+                    'Homed': status.Homed,
+                    'Error': status.Error,
                 }
             })
         }, 1000)
-
     }, [])
 
 

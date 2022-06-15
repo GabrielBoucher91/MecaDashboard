@@ -30,12 +30,12 @@ export default function StatusBar(props) {
     return (
         <div className={styles.StatusBar}>
             <div>
-                <div className={styles.labels}><span className={styles.label}>Connection</span><StatusLed bgcolor={robotState.Connection ? 'ledgreen' : 'ledgrey'} /></div>
-                <div className={styles.labels}><span className={styles.label}>Activated</span><StatusLed bgcolor={robotState.Activated ? 'ledgreen' : 'ledgrey'} /></div>
+                <div className={styles.labels}><span className={styles.label}>Connection</span><StatusLed bgcolor={props.robotState.Connection ? 'ledgreen' : 'ledgrey'} /></div>
+                <div className={styles.labels}><span className={styles.label}>Activated</span><StatusLed bgcolor={props.robotState.Activated ? 'ledgreen' : 'ledgrey'} /></div>
             </div>
             <div>
-                <div className={styles.labels}><span className={styles.label}>Homed</span><StatusLed bgcolor={robotState.Homed ? 'ledgreen' : 'ledgrey'} /></div>
-                <div className={styles.labels}><span className={styles.label}>Error</span><StatusLed bgcolor={robotState.Error ? 'ledgreen' : 'ledgrey'} /></div>
+                <div className={styles.labels}><span className={styles.label}>Homed</span><StatusLed bgcolor={props.robotState.Homed ? 'ledgreen' : 'ledgrey'} /></div>
+                <div className={styles.labels}><span className={styles.label}>Error</span><StatusLed bgcolor={props.robotState.Error ? 'ledred' : 'ledgrey'} /></div>
             </div>
         </div>
     )

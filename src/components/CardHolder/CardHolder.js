@@ -17,25 +17,31 @@ export default function CardHolder() {
         setIsOpen(false)
     }
 
-    function onClickHandle(name, ipaddress) {
+    async function onClickHandle(name, ipaddress) {
         if (!numCards.filter(e => e.ip === ipaddress).length > 0) {
-            fetch('/registerRobot', {
+            var connection = false;
+            const response = await fetch('/registerRobot', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ ip: ipaddress })
             })
-                .then(response => response.json())
-                .then(data => console.log(data))
-
-            setNumCards(prevNumCards => {
-                return [...prevNumCards, {
-                    'ip': ipaddress,
-                    'card': <RobotCard name={name} ipaddress={ipaddress} />
-                }]
-            })
-            closeModal()
+            const connectionStatus = await response.json()
+            console.log(connectionStatus)
+            connection = connectionStatus
+            console.log(connection)
+            if (connection) {
+                setNumCards(prevNumCards => {
+                    return [...prevNumCards, {
+                        'ip': ipaddress,
+                        'card': <RobotCard name={name} ipaddress={ipaddress} />
+                    }]
+                })
+                closeModal()
+            } else {
+                alert('Could not connect to this address')
+            }
         } else {
             alert('This IP address is already in use')
         }
