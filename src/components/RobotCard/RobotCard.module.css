@@ -4,8 +4,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 1em 0em;
-    font-size: 0.75em;
-    background-color: lightgray;
+    font-size: 1.2em;
+    background-color: #D9D8D6;
     width: 15em;
     height: 20em;
     border-radius: 1.5em;
@@ -13,10 +13,21 @@
     box-shadow: 0em 1em 1em 0.1em grey;
 }
 
-h1 {
+.titles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
     margin: 0;
 }
 
 .robotlogo {
     max-height: 10em;
+}
+
+.ipaddress {
+    margin: 0;
+    padding: 0;
 }

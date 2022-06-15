@@ -3,7 +3,7 @@ import styles from './RobotCard.module.css'
 import React, { useState, useRef, useEffect } from 'react'
 import StatusBar from '../StatusBar/StatusBar'
 
-export default function RobotCard() {
+export default function RobotCard(props) {
     const [buttonState, setButtonState] = useState({
         "actual": false,
         "previous": false
@@ -58,10 +58,13 @@ export default function RobotCard() {
 
     return (
         <div className={styles.robotcard}>
-            <h1>
-                Meca500
-            </h1>
-            <button onClick={onClickHandle}>Click me</button>
+            <div className={styles.titles}>
+                <h1 className={styles.title}>
+                    {props.name}
+                </h1>
+                <p className={styles.ipaddress}>{props.ipaddress}</p>
+            </div>
+            {/* <button onClick={onClickHandle}>Click me</button> */}
             <img src={robot} alt='Robot Logo' className={styles.robotlogo}></img>
             <StatusBar buttonState={buttonState["actual"]} robotState={robotState} />
 

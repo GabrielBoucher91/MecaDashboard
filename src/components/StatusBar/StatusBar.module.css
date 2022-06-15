@@ -1,17 +1,18 @@
 .StatusBar {
-    font-size: 0.65em;
+    font-size: 0.70em;
     margin: 1em 3em;
     width: 90%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
 }
 
 .labels {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     flex-direction: row;
+    width: 40%;
+    padding-left: 30%;
 }
 
 .label {
