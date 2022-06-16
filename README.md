@@ -68,3 +68,21 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+
+# MecaDashboard
+
+## What is this?
+
+This is a demo program to show how one could build a dashboard using react to monitor multiple robots on the same subnet. It is built using:
+
+* React
+* Flask
+* Mecademicpy
+
+It is meant to run locally and is more of a proof of concept. I might extend the flask backend to allow for more functionalities later on and could be used in pretty much any web application.
+
+## How to use
+For the front end it is as simple as installing the dependencies using `npm install`. Then I recommend seeting up a virtual environment in the api folder to run the flask server. In the App.js file, you can toggle the use of the backend by changing the connect props. This is there to disable the backend to test front end stuff without having to be connected to a robot.
