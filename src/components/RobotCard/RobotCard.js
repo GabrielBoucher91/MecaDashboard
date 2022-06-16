@@ -1,90 +1,51 @@
 import robot from './imgs/robotic-arm.png'
 import styles from './RobotCard.module.css'
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import StatusBar from '../StatusBar/StatusBar'
 
 export default function RobotCard(props) {
-    const [buttonState, setButtonState] = useState({
-        "actual": false,
-        "previous": false
-    })
     const [robotState, setRobotState] = useState({
         "Connection": true,
         "Activated": false,
         "Homed": false,
         "Error": false,
     })
-    const isMounted = useRef(false)
-
-    // function onClickHandle() {
-    //     console.log('Clicked')
-    //     console.log(buttonState)
-    //     if (buttonState["actual"]) {
-    //         setButtonState({
-    //             ...buttonState,
-    //             "actual": false
-    //         })
-    //     } else {
-    //         console.log('Butts')
-    //         setButtonState({
-    //             ...buttonState,
-    //             "actual": true
-    //         })
-    //     }
-    // }
-
-
-
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         setButtonState(prevButtonState => {
-    //             if (prevButtonState["actual"] !== prevButtonState["prev"]) {
-    //                 return {
-    //                     ...prevButtonState,
-    //                     "previous": prevButtonState["actual"]
-    //                 }
-    //             } else {
-    //                 return {
-    //                     ...prevButtonState,
-    //                     "previous": prevButtonState["actual"]
-    //                 }
-    //             }
-    //         })
-    //     }, 1000)
-
-    // }, [])
 
 
     useEffect(() => {
-        const interval = setInterval(async () => {
-            const response = await fetch(`/getStatus?ip=${props.ipaddress}`)
-            const status = await response.json()
-            setRobotState(prevRobotState => {
-                return {
-                    'Connection': true,
-                    'Activated': status.Activated,
-                    'Homed': status.Homed,
-                    'Error': status.Error,
-                }
-            })
-        }, 1000)
+        if (props.connect) {
+            const interval = setInterval(async () => {
+                const response = await fetch(`/getStatus?ip=${props.ipaddress}`)
+                const status = await response.json()
+                setRobotState(prevRobotState => {
+                    return {
+                        'Connection': true,
+                        'Activated': status.Activated,
+                        'Homed': status.Homed,
+                        'Error': status.Error,
+                    }
+                })
+            }, 1000)
+        }
     }, [])
 
-
+    function removeCard() {
+        props.deleteCard(props.ipaddress)
+    }
 
 
     return (
         <div className={styles.robotcard}>
+            <button className={styles.closebutton} onClick={removeCard}>X</button>
             <div className={styles.titles}>
                 <h1 className={styles.title}>
                     {props.name}
                 </h1>
-                <p className={styles.ipaddress}>{props.ipaddress}</p>
+                <a href={`http://${props.ipaddress}`} target='_blank' className={styles.ipaddress}>{props.ipaddress}</a>
             </div>
             {/* <button onClick={onClickHandle}>Click me</button> */}
             <img src={robot} alt='Robot Logo' className={styles.robotlogo}></img>
-            <StatusBar buttonState={buttonState["actual"]} robotState={robotState} />
-
+            <StatusBar robotState={robotState} />
         </div>
     )
 }

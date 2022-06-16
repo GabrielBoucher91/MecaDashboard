@@ -16,7 +16,7 @@
     border-radius: 1.5em;
     margin: 11em;
     box-shadow: 0em 0.5em 0.5em 0.1em grey;
-    transition: all 0.1s;
+    transition: all 0.3s;
 }
 
 .addbutton:hover {
