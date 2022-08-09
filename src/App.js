@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <CardHolder connect={false} />
+      <CardHolder connect={true} />
     </div>
   );
 }

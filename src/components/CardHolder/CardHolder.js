@@ -36,7 +36,7 @@ export default function CardHolder(props) {
                     setNumCards(prevNumCards => {
                         return [...prevNumCards, {
                             'ip': ipaddress,
-                            'card': <RobotCard name={name} ipaddress={ipaddress} connect={props.connect} />
+                            'card': <RobotCard name={name} ipaddress={ipaddress} connect={props.connect} deleteCard={removeRobotHandle} />
                         }]
                     })
                     closeModal()
